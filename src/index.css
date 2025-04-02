@@ -1,0 +1,63 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #213547;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  color: #111;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+body.dark {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark input,
+body.dark button {
+  background-color: #222;
+  color: white;
+  border-color: #444;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #eeeeee;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #d6d6d6;
+}
+
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
