@@ -8,11 +8,11 @@ import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyDgY-K48-DKLyvKnxUgun_8kEvamfI4BEo",
-  authDomain: "number-guess-game-2dff3.firebaseapp.com",
-  databaseURL: "https://number-guess-game-2dff3-default-rtdb.firebaseio.com",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DB,
   projectId: "number-guess-game-2dff3",
-  storageBucket: "number-guess-game-2dff3.firebasestorage.app",
+  storageBucket: "number-guess-game-2dff3.appspot.com",
   messagingSenderId: "208738439993",
   appId: "1:208738439993:web:c04f8aac92d3562c7ccee8",
   measurementId: "G-9GY1ZRB5LS"
