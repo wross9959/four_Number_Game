@@ -51,6 +51,12 @@ const Game = ({ playerInfo }) => {
 
   const isMyTurn = roomData?.turn === playerId;
 
+  const scrollIntoView = (e) => {
+    setTimeout(() => {
+      e.target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 300);
+  };
+
   const handleSetSecret = async () => {
     const fullSecret = secretDigits.join("");
     if (fullSecret.length !== 4) return alert("Enter 4-digit secret");
@@ -130,7 +136,15 @@ const Game = ({ playerInfo }) => {
   );
 
   return (
-    <div style={{ padding: 10, paddingTop: 60 }}>
+    <div
+      style={{
+        padding: 10,
+        paddingTop: 60,
+        minHeight: "100dvh",
+        overflowY: "auto",
+        WebkitOverflowScrolling: "touch",
+      }}
+    >
       {isWinner && <Confetti />} 
       {isLoser && <LoserRain />} 
 
@@ -161,6 +175,7 @@ const Game = ({ playerInfo }) => {
                   inputMode="numeric"
                   maxLength={1}
                   value={digit}
+                  onFocus={scrollIntoView}
                   onChange={(e) => {
                     const val = e.target.value.replace(/\D/, "");
                     const newDigits = [...secretDigits];
@@ -209,6 +224,7 @@ const Game = ({ playerInfo }) => {
                   maxLength={1}
                   disabled={!isMyTurn}
                   value={digit}
+                  onFocus={scrollIntoView}
                   onChange={(e) => {
                     const val = e.target.value.replace(/\D/, "");
                     const newDigits = [...inputDigits];
