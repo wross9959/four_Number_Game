@@ -94,15 +94,21 @@ const Game = ({ playerInfo }) => {
   const renderGuessRow = (entry) => (
     <li
       key={entry.timestamp}
-      style={{ display: "flex", gap: "10px", marginBottom: "10px", justifyContent: "center" }}
+      style={{
+        display: "flex",
+        gap: "8px",
+        marginBottom: "8px",
+        justifyContent: "center",
+        flexWrap: "wrap"
+      }}
     >
       {entry.guess.split("").map((digit, i) => (
         <div
           key={i}
           style={{
-            width: "60px",
-            height: "60px",
-            fontSize: "2rem",
+            width: "44px",
+            height: "44px",
+            fontSize: "1.3rem",
             fontWeight: "bold",
             display: "flex",
             alignItems: "center",
@@ -124,29 +130,29 @@ const Game = ({ playerInfo }) => {
   );
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", paddingTop: 80, position: "relative" }}>
-      {isWinner && <Confetti />}
-      {isLoser && <LoserRain />}
+    <div style={{ padding: 10, paddingTop: 60 }}>
+      {isWinner && <Confetti />} 
+      {isLoser && <LoserRain />} 
 
       <div
         style={{
-          padding: 20,
-          maxWidth: 600,
-          width: "100%",
+          padding: 15,
+          maxWidth: 460,
+          margin: "0 auto",
           backgroundColor: "white",
           borderRadius: 12,
           boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
         }}
       >
         <h2 style={{ textAlign: "center" }}>Room: {roomCode}</h2>
-        <p style={{ textAlign: "center", fontWeight: "bold", color: "#444" }}>
+        <p style={{ textAlign: "center", fontWeight: "bold", color: "#444", fontSize: "0.95rem" }}>
           You are: <span style={{ color: "#646cff" }}>{username}</span><br />
           Your number: {mySecret || "???"}
         </p>
 
         {!mySecret ? (
           <>
-            <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: 5 }}>
               {secretDigits.map((digit, index) => (
                 <input
                   key={index}
@@ -168,9 +174,9 @@ const Game = ({ playerInfo }) => {
                     }
                   }}
                   style={{
-                    width: "60px",
-                    height: "60px",
-                    fontSize: "2rem",
+                    width: "44px",
+                    height: "44px",
+                    fontSize: "1.3rem",
                     fontWeight: "bold",
                     textAlign: "center",
                     borderRadius: "8px",
@@ -193,7 +199,7 @@ const Game = ({ playerInfo }) => {
         ) : (
           <>
             <h4 style={{ textAlign: "center" }}>{isMyTurn ? "Your Turn" : "Opponent's Turn"}</h4>
-            <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: 5 }}>
               {inputDigits.map((digit, index) => (
                 <input
                   key={index}
@@ -216,9 +222,9 @@ const Game = ({ playerInfo }) => {
                     }
                   }}
                   style={{
-                    width: "60px",
-                    height: "60px",
-                    fontSize: "2rem",
+                    width: "44px",
+                    height: "44px",
+                    fontSize: "1.3rem",
                     fontWeight: "bold",
                     textAlign: "center",
                     borderRadius: "8px",
