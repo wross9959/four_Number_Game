@@ -51,11 +51,6 @@ const Game = ({ playerInfo }) => {
 
   const isMyTurn = roomData?.turn === playerId;
 
-  const scrollIntoView = (e) => {
-    setTimeout(() => {
-      e.target.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 300);
-  };
 
   const handleSetSecret = async () => {
     const fullSecret = secretDigits.join("");
@@ -110,23 +105,23 @@ const Game = ({ playerInfo }) => {
     >
       {entry.guess.split("").map((digit, i) => (
         <div
-          key={i}
-          style={{
-            width: "44px",
-            height: "44px",
-            fontSize: "1.3rem",
-            fontWeight: "bold",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "8px",
-            backgroundColor:
-              entry.result[i] === "correct"
-                ? "#6aaa64"
-                : entry.result[i] === "present"
-                ? "#c9b458"
-                : "#787c7e",
-            color: "white",
+        key={i}
+        style={{
+          width: "44px",
+          height: "44px",
+          fontSize: "1.3rem",
+          fontWeight: "bold",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: "8px",
+          backgroundColor:
+            entry.result[i] === "correct"
+              ? "#6aaa64"
+              : entry.result[i] === "present"
+              ? "#c9b458"
+              : "#787c7e",
+          color: "white",
           }}
         >
           {digit}
@@ -143,25 +138,31 @@ const Game = ({ playerInfo }) => {
         minHeight: "100dvh",
         overflowY: "auto",
         WebkitOverflowScrolling: "touch",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
-      {isWinner && <Confetti />} 
+      {isWinner && <Confetti numberOfPieces={150} recycle={false} style={{ zIndex: 1 }} />} 
       {isLoser && <LoserRain />} 
 
       <div
         style={{
-          padding: 15,
-          maxWidth: 460,
-          margin: "0 auto",
-          backgroundColor: "white",
-          borderRadius: 12,
-          boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
+            padding: 15,
+            maxWidth: 460,
+            width: "100%",
+            backgroundColor: "white",
+            borderRadius: 12,
+            boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
+            boxSizing: "border-box",
+            margin: "auto"
         }}
       >
         <h2 style={{ textAlign: "center" }}>Room: {roomCode}</h2>
         <p style={{ textAlign: "center", fontWeight: "bold", color: "#444", fontSize: "0.95rem" }}>
-          You are: <span style={{ color: "#646cff" }}>{username}</span><br />
-          Your number: {mySecret || "???"}
+          <span>You are:</span>{" "}
+          <span style={{ color: "#646cff", fontWeight: "bold" }}>{username}</span><br />
+          <span>Your number:</span> {mySecret || "???"}
         </p>
 
         {!mySecret ? (
@@ -175,7 +176,7 @@ const Game = ({ playerInfo }) => {
                   inputMode="numeric"
                   maxLength={1}
                   value={digit}
-                  onFocus={scrollIntoView}
+                //   onFocus={scrollIntoView}
                   onChange={(e) => {
                     const val = e.target.value.replace(/\D/, "");
                     const newDigits = [...secretDigits];
@@ -207,7 +208,20 @@ const Game = ({ playerInfo }) => {
         ) : gameWon ? (
           <>
             <h3 style={{ textAlign: "center" }}>🎉 {roomData.winner} guessed correctly!</h3>
-            <button onClick={handleRematch} style={{ display: "block", margin: "0 auto" }}>
+            <button
+              onClick={handleRematch}
+              style={{
+                display: "block",
+                margin: "16px auto",
+                padding: "10px 20px",
+                fontSize: "1rem",
+                borderRadius: "8px",
+                backgroundColor: "#646cff",
+                color: "white",
+                border: "none",
+                minWidth: "140px"
+              }}
+            >
               Play Again
             </button>
           </>
@@ -224,7 +238,7 @@ const Game = ({ playerInfo }) => {
                   maxLength={1}
                   disabled={!isMyTurn}
                   value={digit}
-                  onFocus={scrollIntoView}
+                //   onFocus={scrollIntoView}
                   onChange={(e) => {
                     const val = e.target.value.replace(/\D/, "");
                     const newDigits = [...inputDigits];
